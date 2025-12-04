@@ -20,7 +20,7 @@
         body {
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9; /* Sedikit warna latar agar tidak terlalu silau */
+            background-color: #f9f9f9;
         }
 
         /* --- NAVBAR --- */
@@ -39,7 +39,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #6F4E37; /* Warna Kopi */
+            color: #6F4E37;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -48,6 +48,10 @@
         .logo img {
             height: 40px;
             width: auto;
+        }
+
+        .nav-links {
+            display: flex; /* Default: Tampil mendatar di desktop */
         }
 
         .nav-links a {
@@ -60,6 +64,65 @@
 
         .nav-links a:hover {
             color: #d35400;
+        }
+
+        /* Styling Tombol Hamburger (Default disembunyikan) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* --- MEDIA QUERY (HP / TABLET) --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            /* Tampilkan tombol hamburger di HP */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Ubah nav-links jadi menu vertikal */
+            .nav-links {
+                display: none; /* Sembunyikan menu secara default di HP */
+                width: 100%;
+                position: absolute;
+                top: 70px; /* Muncul tepat di bawah navbar */
+                left: 0;
+                background-color: #fff;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex; /* Tampilkan saat class 'active' ditambahkan oleh JS */
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                margin-left: 0; /* Reset margin kiri */
+                display: block;
+            }
+
+            .location-container {
+                gap: 20px;
+            }
+
+            .location-text {
+                padding: 2rem;
+            }
         }
 
         /* --- HERO SECTION --- */
@@ -175,23 +238,22 @@
             margin-top: 0.5rem;
         }
 
-        /* --- UPDATE: SECTION LOCATION MODERN --- */
+        /* --- SECTION LOCATION --- */
         .location-container {
             display: flex;
-            flex-wrap: wrap; /* Turun ke bawah otomatis di layar HP */
-            gap: 40px; /* Jarak antar elemen lebih lega */
-            align-items: stretch; /* Tinggi kartu dan peta sejajar */
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: stretch;
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* Styling Kotak Peta */
         .map-box {
-            flex: 1 1 400px; /* Lebar fleksibel, minimal 400px jika muat */
-            border-radius: 20px; /* Sudut melengkung */
+            flex: 1 1 400px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.15); /* Bayangan halus warna kopi */
-            min-height: 400px; /* Tinggi minimum agar peta jelas */
+            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.15);
+            min-height: 400px;
             position: relative;
         }
 
@@ -201,7 +263,6 @@
             border: none;
         }
 
-        /* Tombol melayang di atas peta */
         .map-overlay-btn {
             position: absolute;
             bottom: 20px;
@@ -222,13 +283,12 @@
             color: #fff;
         }
 
-        /* Styling Kartu Informasi (Teks) */
         .location-text {
             flex: 1 1 350px;
             background: #fff;
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Bayangan sangat halus */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -249,14 +309,13 @@
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
-        
-        /* Link aktif untuk kontak */
+
         .contact-link {
             color: #666;
             text-decoration: none;
             transition: color 0.3s;
         }
-        
+
         .contact-link:hover {
             color: #d35400;
             text-decoration: underline;
@@ -270,25 +329,6 @@
             padding: 2rem;
             margin-top: 2rem;
         }
-
-        /* Media Query Mobile */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-            
-            .location-container {
-                gap: 20px;
-            }
-            
-            .location-text {
-                padding: 2rem;
-            }
-        }
     </style>
 </head>
 
@@ -300,11 +340,17 @@
             Soree Coffee.
         </div>
 
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
         <div class="nav-links">
             <a href="#hero">Beranda</a>
             <a href="#about">Tentang</a>
             <a href="#menu">Menu</a>
-            <a href="#location">Lokasi</a> 
+            <a href="#location">Lokasi</a>
             <a href="#location">Kontak</a>
         </div>
     </nav>
@@ -363,28 +409,30 @@
     <section id="location">
         <h2 class="section-title">Temukan Kami</h2>
         <div class="location-container">
-            
+
             <div class="map-box">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-                <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" class="map-overlay-btn" target="_blank">Buka di Google Maps</a>
+                <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" class="map-overlay-btn" target="_blank">Buka di
+                    Google Maps</a>
             </div>
 
             <div class="location-text">
                 <div>
                     <h3>Soree Coffee HQ</h3>
                     <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah,<br>
-                    Kec. Marpoyan Damai, Kota Pekanbaru,<br>
-                    Riau 28282</p>
+                        Kec. Marpoyan Damai, Kota Pekanbaru,<br>
+                        Riau 28282</p>
                 </div>
-                
+
                 <div>
                     <h3>Hubungi Kami</h3>
                     <p>
-                        <strong>WhatsApp:</strong> <a href="https://wa.me/6282122578787" class="contact-link">+62 821-2257-8787</a><br>
-                        <strong>Email:</strong> <a href="mailto:hallo@soreecoffee.com" class="contact-link">hallo@soreecoffee.com</a>
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/6282122578787" class="contact-link">+62
+                            821-2257-8787</a><br>
+                        <strong>Email:</strong> <a href="mailto:hallo@soreecoffee.com"
+                            class="contact-link">hallo@soreecoffee.com</a>
                     </p>
                 </div>
             </div>
@@ -396,6 +444,18 @@
         <p>© 2025 Soree Coffee. Pekanbaru, Indonesia.</p>
         <p>Buka setiap hari: 10.00 - 22.00 WIB</p>
     </footer>
+
+    <script>
+        // Mengambil elemen tombol dan menu
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        // Menambahkan event listener 'click'
+        menuToggle.addEventListener('click', () => {
+            // Menambah/menghapus class 'active' untuk memunculkan menu
+            navLinks.classList.toggle('active');
+        });
+    </script>
 
 </body>
 
