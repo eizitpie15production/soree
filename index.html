@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soree Coffee - Nikmati Senja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9; /* Sedikit warna latar agar tidak terlalu silau */
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6F4E37; /* Warna Kopi */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d35400;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            background-color: #d35400;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e67e22;
+        }
+
+        /* --- SECTIONS UMUM --- */
+        section {
+            padding: 4rem 5%;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #6F4E37;
+        }
+
+        /* --- ABOUT US --- */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .about-img {
+            flex: 1 1 400px;
+        }
+
+        .about-img img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1 1 400px;
+        }
+
+        /* --- MENU (GRID SYSTEM) --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: #d35400;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* --- UPDATE: SECTION LOCATION MODERN --- */
+        .location-container {
+            display: flex;
+            flex-wrap: wrap; /* Turun ke bawah otomatis di layar HP */
+            gap: 40px; /* Jarak antar elemen lebih lega */
+            align-items: stretch; /* Tinggi kartu dan peta sejajar */
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Styling Kotak Peta */
+        .map-box {
+            flex: 1 1 400px; /* Lebar fleksibel, minimal 400px jika muat */
+            border-radius: 20px; /* Sudut melengkung */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.15); /* Bayangan halus warna kopi */
+            min-height: 400px; /* Tinggi minimum agar peta jelas */
+            position: relative;
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Tombol melayang di atas peta */
+        .map-overlay-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #6F4E37;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .map-overlay-btn:hover {
+            background: #6F4E37;
+            color: #fff;
+        }
+
+        /* Styling Kartu Informasi (Teks) */
+        .location-text {
+            flex: 1 1 350px;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Bayangan sangat halus */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-text h3 {
+            color: #6F4E37;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .location-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Link aktif untuk kontak */
+        .contact-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-link:hover {
+            color: #d35400;
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Media Query Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+            
+            .location-container {
+                gap: 20px;
+            }
+            
+            .location-text {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="logosoree.jpg" alt="Logo Soree Coffee">
+            Soree Coffee.
+        </div>
+
+        <div class="nav-links">
+            <a href="#hero">Beranda</a>
+            <a href="#about">Tentang</a>
+            <a href="#menu">Menu</a>
+            <a href="#location">Lokasi</a> 
+            <a href="#location">Kontak</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Rayakan Senja.</h1>
+            <p>Kopi pilihan yang diseduh dengan hati, siap menemani cerita soremu.</p>
+            <a href="#menu" class="cta-button">Lihat Menu Kami</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Tentang Kami</h2>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="tentang.jpg" alt="Interior Cafe">
+            </div>
+            <div class="about-text">
+                <h3>Lebih dari Sekadar Kopi</h3>
+                <p>Soree Coffee lahir dari kecintaan kami pada momen tenang di penghujung hari. Kami percaya bahwa
+                    secangkir kopi yang baik dapat mengubah suasana hati.</p>
+                <br>
+                <p>Biji kopi kami diambil langsung dari petani lokal terbaik di Indonesia, dipanggang dengan presisi
+                    untuk mengeluarkan aroma terbaiknya.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Menu Favorit</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="menu1.jpg" alt="Latte">
+                <h3>Ice Choco Oreo</h3>
+                <p>Espresso dengan susu creamy dan gula aren.</p>
+                <span class="price">Rp 22.000</span>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=300&q=80"
+                    alt="Espresso">
+                <h3>Americano</h3>
+                <p>Hitam, kuat, dan penuh semangat.</p>
+                <span class="price">Rp 22.000</span>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80"
+                    alt="Croissant">
+                <h3>Croissant Butter</h3>
+                <p>Teman sempurna untuk kopi panasmu.</p>
+                <span class="price">Rp 18.000</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="location">
+        <h2 class="section-title">Temukan Kami</h2>
+        <div class="location-container">
+            
+            <div class="map-box">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" class="map-overlay-btn" target="_blank">Buka di Google Maps</a>
+            </div>
+
+            <div class="location-text">
+                <div>
+                    <h3>Soree Coffee HQ</h3>
+                    <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah,<br>
+                    Kec. Marpoyan Damai, Kota Pekanbaru,<br>
+                    Riau 28282</p>
+                </div>
+                
+                <div>
+                    <h3>Hubungi Kami</h3>
+                    <p>
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/6282122578787" class="contact-link">+62 821-2257-8787</a><br>
+                        <strong>Email:</strong> <a href="mailto:hallo@soreecoffee.com" class="contact-link">hallo@soreecoffee.com</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Soree Coffee. Pekanbaru, Indonesia.</p>
+        <p>Buka setiap hari: 10.00 - 22.00 WIB</p>
+    </footer>
+
+</body>
+
+</html>
