@@ -51,7 +51,8 @@
         }
 
         .nav-links {
-            display: flex; /* Default: Tampil mendatar di desktop */
+            display: flex;
+            /* Default: Tampil mendatar di desktop */
         }
 
         .nav-links a {
@@ -94,25 +95,29 @@
 
             /* Ubah nav-links jadi menu vertikal */
             .nav-links {
-                display: none; /* Sembunyikan menu secara default di HP */
+                display: none;
+                /* Sembunyikan menu secara default di HP */
                 width: 100%;
                 position: absolute;
-                top: 70px; /* Muncul tepat di bawah navbar */
+                top: 70px;
+                /* Muncul tepat di bawah navbar */
                 left: 0;
                 background-color: #fff;
                 flex-direction: column;
                 text-align: center;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
                 padding: 20px 0;
             }
 
             .nav-links.active {
-                display: flex; /* Tampilkan saat class 'active' ditambahkan oleh JS */
+                display: flex;
+                /* Tampilkan saat class 'active' ditambahkan oleh JS */
             }
 
             .nav-links a {
                 margin: 15px 0;
-                margin-left: 0; /* Reset margin kiri */
+                margin-left: 0;
+                /* Reset margin kiri */
                 display: block;
             }
 
@@ -274,7 +279,7 @@
             border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: 0.3s;
         }
 
@@ -328,6 +333,75 @@
             text-align: center;
             padding: 2rem;
             margin-top: 2rem;
+        }
+
+        /* --- BUTTON SOSMED --- */
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            /* Jarak antar tombol */
+            flex-wrap: wrap;
+        }
+
+        .btn-sosmed {
+            display: inline-block;
+            padding: 12px 25px;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            /* Membuat tombol bulat lonjong agar modern */
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-sosmed:hover {
+            transform: translateY(-3px);
+            /* Efek naik sedikit saat di-hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+
+        /* Warna Spesifik WhatsApp */
+        .btn-wa {
+            background-color: #25D366;
+        }
+
+        /* Warna Spesifik Instagram (Gradasi) */
+        .btn-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* --- Warna Tombol Order --- */
+
+        /* GoFood - Hijau Resmi */
+        .btn-gofood {
+            background-color: #00AA13;
+            /* Warna hijau khas Gojek */
+            color: white;
+            border: 1px solid #00AA13;
+        }
+
+        .btn-gofood:hover {
+            background-color: #00880F;
+            /* Efek lebih gelap saat disentuh */
+            box-shadow: 0 6px 15px rgba(0, 170, 19, 0.3);
+            /* Bayangan hijau */
+        }
+
+        /* ShopeeFood - Oranye Resmi */
+        .btn-shopeefood {
+            background-color: #EE4D2D;
+            /* Warna oranye khas Shopee */
+            color: white;
+            border: 1px solid #EE4D2D;
+        }
+
+        .btn-shopeefood:hover {
+            background-color: #D73211;
+            /* Efek lebih gelap saat disentuh */
+            box-shadow: 0 6px 15px rgba(238, 77, 45, 0.3);
+            /* Bayangan oranye */
         }
     </style>
 </head>
@@ -384,24 +458,26 @@
         <h2 class="section-title">Menu Favorit</h2>
         <div class="menu-grid">
             <div class="menu-card">
-                <img src="menu1.jpg" alt="Latte">
+                <img src="menu1.jpg" alt="ChocoOreo">
                 <h3>Ice Choco Oreo</h3>
-                <p>Espresso dengan susu creamy dan gula aren.</p>
-                <span class="price">Rp 22.000</span>
+                <p>Soree Ice Choco Oreo: Nikmati minuman cokelat creamy yang dingin dengan topping biskuit Oreo melimpah
+                    dan renyah. Sensasi rasa cokelat yang kaya dan memanjakan di setiap tegukan.</p>
+                <span class="price">Rp 15.000</span>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=300&q=80"
-                    alt="Espresso">
-                <h3>Americano</h3>
-                <p>Hitam, kuat, dan penuh semangat.</p>
-                <span class="price">Rp 22.000</span>
+                <img src="menu2.jpg" alt="Regales">
+                <h3>Ice Milk Regales</h3>
+                <p>Soree Ice Milk Regales: Creamy. Renyah. Bikin nagih. Nikmati kesegaran susu dingin dengan topping
+                    Lotus Biscoff yang melimpah. Teman sempurna untuk harimu! Yuk, pesan sekarang di Soree Coffee.</p>
+                <span class="price">Rp 14.000</span>
             </div>
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80"
-                    alt="Croissant">
-                <h3>Croissant Butter</h3>
-                <p>Teman sempurna untuk kopi panasmu.</p>
-                <span class="price">Rp 18.000</span>
+                <img src="menu3.jpg" alt="CoffeVanilaLatte">
+                <h3>Ice Coffe Vanila Latte</h3>
+                <p>Soree Ice Coffe Vanila Latte: Segarkan harimu dengan estetika rasa! Ice Vanilla Latte ini hadir
+                    dengan layer cantik espresso dan susu creamy, disempurnakan oleh aroma vanila yang lembut. Nikmatnya
+                    bikin jatuh cinta pada tegukan pertama.</p>
+                <span class="price">Rp 17.000</span>
             </div>
         </div>
     </section>
@@ -411,16 +487,18 @@
         <div class="location-container">
 
             <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-                <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D" class="map-overlay-btn" target="_blank">Buka di
+                <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D"
+                    class="map-overlay-btn" target="_blank">Buka di
                     Google Maps</a>
             </div>
 
             <div class="location-text">
                 <div>
-                    <h3>Soree Coffee HQ</h3>
+                    <h3>Lokasi Soree Coffee</h3>
                     <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah,<br>
                         Kec. Marpoyan Damai, Kota Pekanbaru,<br>
                         Riau 28282</p>
@@ -428,21 +506,45 @@
 
                 <div>
                     <h3>Hubungi Kami</h3>
-                    <p>
-                        <strong>WhatsApp:</strong> <a href="https://wa.me/6282122578787" class="contact-link">+62
-                            821-2257-8787</a><br>
-                        <strong>Email:</strong> <a href="mailto:hallo@soreecoffee.com"
-                            class="contact-link">hallo@soreecoffee.com</a>
+                    <p style="margin-bottom: 15px;">Klik tombol di bawah untuk chat atau melihat galeri kami:</p>
+
+                    <div class="social-buttons">
+                        <a href="https://wa.me/6282122578787" class="btn-sosmed btn-wa" target="_blank">
+                            WhatsApp
+                        </a>
+
+                        <a href="https://www.instagram.com/soree.kopi/" class="btn-sosmed btn-ig" target="_blank">
+                            Instagram
+                        </a>
+                    </div>
+
+                    <p style="margin-top: 15px; font-size: 0.9rem;">
+                        Email: <a href="mailto:hallo@soreecoffee.com" class="contact-link">hallo@soreecoffee.com</a>
                     </p>
                 </div>
-            </div>
 
-        </div>
+                <div style="margin-top: 30px;">
+                    <h3>Order Produk Kami</h3>
+                    <p style="margin-bottom: 15px;">Pesan antar langsung ke tempatmu:</p>
+
+                    <div class="social-buttons">
+                        <a href="https://gofood.link/a/yM9mGy9" class="btn-sosmed btn-gofood" target="_blank">
+                            GoFood
+                        </a>
+
+                        <a href="https://shopee.co.id/universal-link/now-food/shop/21693382?deep_and_deferred=1&shareChannel=whatsapp"
+                            class="btn-sosmed btn-shopeefood" target="_blank">
+                            ShopeeFood
+                        </a>
+                    </div>
+                </div>
+
+            </div>
     </section>
 
     <footer>
         <p>© 2025 Soree Coffee. Pekanbaru, Indonesia.</p>
-        <p>Buka setiap hari: 10.00 - 22.00 WIB</p>
+        <p>Buka setiap hari: 19.00 - 23.00 WIB</p>
     </footer>
 
     <script>
