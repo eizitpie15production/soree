@@ -131,16 +131,72 @@
         }
 
         /* --- HERO SECTION --- */
+        /* --- HERO SECTION (UPDATE) --- */
         #hero {
             height: 100vh;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+            /* Kita hapus background-image statis karena sudah diganti slider */
+            background: #000;
+            position: relative;
+            /* Penting agar slider tetap di dalam kotak hero */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            overflow: hidden;
+            /* Mencegah gambar keluar jalur */
+        }
+
+        /* WADAH SLIDER */
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* Di paling belakang */
+        }
+
+        /* GAMBAR SLIDE INDIVIDUAL */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Agar gambar tidak gepeng */
+            opacity: 0;
+            /* Sembunyi secara default */
+            transition: opacity 1s ease-in-out;
+            /* Efek pudar 1 detik */
+        }
+
+        /* GAMBAR YANG AKTIF */
+        .slide.active {
+            opacity: 1;
+            /* Muncul */
+        }
+
+        /* LAPISAN GELAP (OVERLAY) */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            /* Hitam transparan 60% */
+            z-index: 2;
+            /* Di atas gambar */
+        }
+
+        /* KONTEN TEKS HERO */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            /* Paling depan (di atas overlay) */
         }
 
         .hero-content h1 {
@@ -403,6 +459,35 @@
             box-shadow: 0 6px 15px rgba(238, 77, 45, 0.3);
             /* Bayangan oranye */
         }
+
+        /* --- CSS KHUSUS CONTACT --- */
+        #contact {
+            background-color: #f4f4f4;
+            /* Latar abu-abu muda agar kartu terlihat menonjol */
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            /* Transisi dibuat sedikit lebih lambat agar elegan */
+
+            /* PENAMBAHAN BARU: Garis aksen warna kopi di atas kartu */
+            border-top: 5px solid #6F4E37;
+
+            /* Bayangan awal yang sangat tipis */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Efek saat kartu di-hover */
+        .contact-card:hover {
+            transform: translateY(-10px);
+
+            /* UBAH DISINI: Bayangan berubah warna menjadi kecoklatan (efek glow) */
+            box-shadow: 0 20px 40px rgba(111, 78, 55, 0.15);
+        }
     </style>
 </head>
 
@@ -425,14 +510,29 @@
             <a href="#about">Tentang</a>
             <a href="#menu">Menu</a>
             <a href="#location">Lokasi</a>
-            <a href="#location">Kontak</a>
+            <a href="#contact">Kontak</a>
         </div>
     </nav>
 
     <section id="hero">
+        <div class="hero-slider">
+            <img src="tentang.jpg" class="slide active"
+                alt="Latte Art">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1950&q=80" class="slide"
+                alt="Coffee Shop Atmosphere">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1950&q=80" class="slide"
+                alt="Coffee Brewing">
+            <img src="tentang3.jpg" class="slide"
+                alt="Coffee Beans">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1950&q=80" class="slide"
+                alt="Cafe Interior">
+        </div>
+
+        <div class="overlay"></div>
+
         <div class="hero-content">
             <h1>Rayakan Senja.</h1>
-            <p>Kopi pilihan yang diseduh dengan hati, siap menemani cerita soremu.</p>
+            <p>"Kopi pilihan yang diseduh dengan hati, Teman Terbaik siap menemani cerita Soreemu"</p>
             <a href="#menu" class="cta-button">Lihat Menu Kami</a>
         </div>
     </section>
@@ -499,47 +599,41 @@
             <div class="location-text">
                 <div>
                     <h3>Lokasi Soree Coffee</h3>
-                    <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah,<br>
-                        Kec. Marpoyan Damai, Kota Pekanbaru,<br>
+                    <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah,
+                        Kec. Marpoyan Damai, Kota Pekanbaru,
                         Riau 28282</p>
                 </div>
+    </section>
 
-                <div>
-                    <h3>Hubungi Kami</h3>
-                    <p style="margin-bottom: 15px;">Klik tombol di bawah untuk chat atau melihat galeri kami:</p>
+    <section id="contact">
+        <h2 class="section-title">Hubungi & Order</h2>
+        <div class="about-container">
 
-                    <div class="social-buttons">
-                        <a href="https://wa.me/6282122578787" class="btn-sosmed btn-wa" target="_blank">
-                            WhatsApp
-                        </a>
-
-                        <a href="https://www.instagram.com/soree.kopi/" class="btn-sosmed btn-ig" target="_blank">
-                            Instagram
-                        </a>
-                    </div>
-
-                    <p style="margin-top: 15px; font-size: 0.9rem;">
-                        Email: <a href="mailto:hallo@soreecoffee.com" class="contact-link">hallo@soreecoffee.com</a>
-                    </p>
+            <div class="about-text contact-card">
+                <h3>Chat Kami</h3>
+                <p>Ada pertanyaan atau ingin reservasi tempat?</p>
+                <br>
+                <div class="social-buttons" style="justify-content: center;">
+                    <a href="https://wa.me/6282122578787" class="btn-sosmed btn-wa" target="_blank">WhatsApp</a>
+                    <a href="https://www.instagram.com/soree.kopi/" class="btn-sosmed btn-ig"
+                        target="_blank">Instagram</a>
                 </div>
-
-                <div style="margin-top: 30px;">
-                    <h3>Order Produk Kami</h3>
-                    <p style="margin-bottom: 15px;">Pesan antar langsung ke tempatmu:</p>
-
-                    <div class="social-buttons">
-                        <a href="https://gofood.link/a/yM9mGy9" class="btn-sosmed btn-gofood" target="_blank">
-                            GoFood
-                        </a>
-
-                        <a href="https://shopee.co.id/universal-link/now-food/shop/21693382?deep_and_deferred=1&shareChannel=whatsapp"
-                            class="btn-sosmed btn-shopeefood" target="_blank">
-                            ShopeeFood
-                        </a>
-                    </div>
-                </div>
-
+                <p style="margin-top: 15px; font-size: 0.9rem;">
+                    Email: <a href="mailto:hallo@soreecoffee.com" class="contact-link">hallo@soreecoffee.com</a>
+                </p>
             </div>
+
+            <div class="about-text contact-card">
+                <h3>Pesan Online</h3>
+                <p>Mager keluar? Pesan langsung dari aplikasi favoritmu:</p>
+                <br>
+                <div class="social-buttons" style="justify-content: center;">
+                    <a href="https://gofood.link/a/yM9mGy9" class="btn-sosmed btn-gofood" target="_blank">GoFood</a>
+                    <a href="#" class="btn-sosmed btn-shopeefood" target="_blank">ShopeeFood</a>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <footer>
@@ -557,6 +651,26 @@
             // Menambah/menghapus class 'active' untuk memunculkan menu
             navLinks.classList.toggle('active');
         });
+
+        // --- LOGIKA SLIDER OTOMATIS ---
+        const slides = document.querySelectorAll('.slide'); // Ambil semua elemen gambar
+        let currentSlide = 0; // Mulai dari gambar pertama (index 0)
+        const slideInterval = 5000; // Waktu ganti: 5000ms = 5 detik
+
+        function nextSlide() {
+            // 1. Hilangkan class 'active' dari gambar yang sekarang tampil
+            slides[currentSlide].classList.remove('active');
+
+            // 2. Hitung urutan gambar berikutnya
+            // (Jika sudah di akhir, kembali ke 0 menggunakan modulus %)
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            // 3. Tambahkan class 'active' ke gambar baru
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Jalankan fungsi nextSlide setiap 5 detik
+        setInterval(nextSlide, slideInterval);
     </script>
 
 </body>
