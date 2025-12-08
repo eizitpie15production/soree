@@ -298,13 +298,40 @@
             margin-bottom: 0.5rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
             letter-spacing: 2px;
+            /* Tambahkan baris ini agar perubahannya tidak kaget */
+            transition: text-shadow 0.3s ease;
         }
 
+        /* 2. Buat aturan baru untuk efek hover */
+        .hero-content h1:hover {
+            /* Kita ganti bayangan hitam biasa menjadi cahaya emas */
+            text-shadow:
+                0 0 20px rgba(199, 133, 65, 0.9),
+                /* Cahaya inti kuat */
+                0 0 50px rgba(199, 133, 65, 0.5);
+            /* Pendaran luas */
+        }
+
+        /* Update bagian ini di CSS kamu */
         .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+            /* Tambahkan transition agar perubahannya halus, tidak kaget */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Tambahkan kode baru ini untuk efek saat kursor diarahkan (hover) */
+        .hero-content p:hover {
+            color: #ffffff;
+            /* Mengubah warna teks menjadi putih terang */
+            text-shadow:
+                0 0 10px #d4a373,
+                /* Cahaya dalam (warna kopi muda) */
+                0 0 20px #d4a373,
+                /* Cahaya tengah */
+                0 0 40px #ffcc80;
+            /* Cahaya luar (lebih terang) */
         }
 
         .cta-button {
@@ -335,6 +362,17 @@
             font-size: 2.5rem;
             /* Gunakan variabel coffee-color */
             color: var(--coffee-color);
+        }
+
+        h2.section-title:hover {
+            /* Hanya efek cahaya (Glow) */
+            /* Layer 1: Cahaya tajam dekat */
+            /* Layer 2: Pendaran lembut jauh */
+            text-shadow:
+                0 0 10px rgba(199, 133, 65, 0.8),
+                0 0 30px rgba(199, 133, 65, 0.4);
+
+            /* Kita HAPUS baris 'transform: scale(...)' agar teks tidak bergerak */
         }
 
         /* --- ABOUT US --- */
@@ -383,9 +421,14 @@
 
         /* --- MENU --- */
         .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            /* Mengganti Grid menjadi Flexbox */
+            flex-wrap: wrap;
+            /* Agar item bisa turun ke baris baru */
+            justify-content: center;
+            /* KUNCI: Membuat semua item rata tengah */
             gap: 2rem;
+            /* Jarak antar kartu */
         }
 
         /* Update CSS untuk Menu Card yang Lebih Elegan */
@@ -404,6 +447,8 @@
             /* Efek membal yang halus */
             position: relative;
             overflow: hidden;
+            flex: 0 1 300px;
+            margin: 10px;
         }
 
         .menu-card:hover {
@@ -767,6 +812,188 @@
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
             transform: scale(1.02);
         }
+
+        /* Efek Glow Mewah untuk About Us */
+        .about-container {
+            transition: all 0.4s ease-in-out;
+        }
+
+        .about-container:hover {
+            transform: translateY(-8px);
+            /* Blur diperbesar ke 60px agar sangat halus */
+            box-shadow: 0 0 60px rgba(199, 133, 65, 0.7);
+        }
+
+        /* Efek Glow Mewah untuk Location */
+        .map-box,
+        .location-text {
+            transition: all 0.4s ease-in-out;
+        }
+
+        .map-box:hover,
+        .location-text:hover {
+            transform: translateY(-8px);
+            /* Blur 60px dengan warna emas kopi */
+            box-shadow: 0 0 60px rgba(199, 133, 65, 0.7);
+        }
+
+        /* Efek Glow Tombol WhatsApp (Hijau) */
+        .btn-wa:hover {
+            /* Mengangkat tombol sedikit */
+            transform: translateY(-3px);
+            /* Bayangan hijau yang menyala */
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Efek Glow Tombol Instagram (Merah/Pink) */
+        .btn-ig:hover {
+            transform: translateY(-3px);
+            /* Bayangan merah/pink agar cocok dengan gradasi IG */
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.6);
+        }
+
+        /* --- STYLE UNTUK MODAL POPUP --- */
+        .modal {
+            display: none;
+            /* Sembunyikan secara default */
+            position: fixed;
+            z-index: 1000;
+            /* Pastikan dia di atas segalanya */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Latar belakang gelap transparan */
+            backdrop-filter: blur(5px);
+            /* Efek blur di belakangnya */
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Kotak Konten di Tengah */
+        .modal-content {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            /* Lebar maksimal */
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--coffee-color);
+        }
+
+        .modal-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--bg-color);
+        }
+
+        /* Tombol Close (X) */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--price-color);
+        }
+
+        /* Tombol Detail di Card */
+        .btn-detail {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Agar Modal Flex saat aktif */
+        .modal.active {
+            display: flex;
+        }
+
+        /* --- STYLE LIGHTBOX ZOOM --- */
+        .lightbox {
+            display: none;
+            /* Sembunyi dulu */
+            position: fixed;
+            z-index: 2000;
+            /* Lebih tinggi dari Modal biasa (biasanya 1000) */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            /* Latar hitam pekat */
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            /* Kursor berubah tanda minus */
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            cursor: default;
+            /* Kursor biasa di area gambar */
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        /* Saat aktif, gambar membesar ke ukuran normal */
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+
+        }
+
+        .lightbox.active {
+            display: flex;
+            /* Gunakan flex agar gambar di tengah */
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-lightbox:hover {
+            color: var(--price-color);
+        }
     </style>
 </head>
 
@@ -841,27 +1068,143 @@
     <section id="menu">
         <h2 class="section-title">Menu Favorit</h2>
         <div class="menu-grid">
+
+
             <div class="menu-card">
                 <img src="menu1.jpg" alt="ChocoOreo">
                 <h3>Ice Choco Oreo</h3>
-                <p>Soree Ice Choco Oreo: Nikmati minuman cokelat creamy yang dingin dengan topping biskuit Oreo melimpah
-                    dan renyah. Sensasi rasa cokelat yang kaya dan memanjakan di setiap tegukan.</p>
+                <p>"Soree Ice Choco Oreo: Nikmati minuman cokelat..."</p>
                 <span class="price">Rp 15.000</span>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-1')">Lihat Detail</button>
             </div>
+
+            <div id="modal-1" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-1')">&times;</span>
+                    <img src="menu1.jpg" alt="Detail ChocoOreo">
+                    <h2>Ice Choco Oreo</h2>
+                    <p class="modal-desc">
+                        Nikmati sensasi cokelat premium yang dipadukan dengan remahan Oreo asli yang melimpah.
+                        Disajikan dingin untuk menyegarkan tenggorokan di sore hari.
+                        <br><br>
+                        <strong>Komposisi:</strong> Cokelat Premium, Susu Segar, Oreo Crumb, Es Batu.
+                    </p>
+                    <span class="price">Rp 15.000</span>
+                    <br><br>
+                    <a href="https://wa.me/6282122578787?text=Halo%20Soree%20Coffee,%20saya%20mau%20pesan%20Ice%20Choco%20Oreo"
+                        class="cta-button">Pesan Sekarang</a>
+                </div>
+            </div>
+
             <div class="menu-card">
                 <img src="menu2.jpg" alt="Regales">
                 <h3>Ice Milk Regales</h3>
-                <p>Soree Ice Milk Regales: Creamy. Renyah. Bikin nagih. Nikmati kesegaran susu dingin dengan topping
-                    Lotus Biscoff yang melimpah. Teman sempurna untuk harimu! Yuk, pesan sekarang di Soree Coffee.</p>
+                <p>"Soree Ice Milk Regales: Creamy. Renyah. Bikin nagih."</p>
                 <span class="price">Rp 14.000</span>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-2')">Lihat Detail</button>
             </div>
+
+            <div id="modal-2" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-2')">&times;</span>
+                    <img src="menu2.jpg" alt="Detail Regales">
+                    <h2>Ice Milk Regales</h2>
+                    <p class="modal-desc">
+                        Perpaduan susu segar yang creamy dengan renyahnya biskuit Regal.
+                        Rasanya lembut, manisnya pas, dan bikin nagih!
+                        <br><br>
+                        <strong>Komposisi:</strong> Susu UHT Full Cream, Biskuit Marie Regal, Simple Syrup.
+                    </p>
+                    <span class="price">Rp 14.000</span>
+                    <br><br>
+                    <a href="https://wa.me/6282122578787?text=Halo%20Soree%20Coffee,%20saya%20mau%20pesan%20Ice%20Milk%20Regales"
+                        class="cta-button">Pesan Sekarang</a>
+                </div>
+            </div>
+
             <div class="menu-card">
                 <img src="menu3.jpg" alt="CoffeVanilaLatte">
-                <h3>Ice Coffe Vanila Latte</h3>
-                <p>Soree Ice Coffe Vanila Latte: Segarkan harimu dengan estetika rasa! Ice Vanilla Latte ini hadir
-                    dengan layer cantik espresso dan susu creamy, disempurnakan oleh aroma vanila yang lembut.</p>
+                <h3>Ice Coffee Vanila Latte</h3>
+                <p>"Soree Ice Coffee Vanila Latte: Segarkan harimu dengan estetika rasa."</p>
                 <span class="price">Rp 17.000</span>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-3')">Lihat Detail</button>
             </div>
+
+            <div id="modal-3" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-3')">&times;</span>
+                    <img src="menu3.jpg" alt="Detail Vanila Latte">
+                    <h2>Ice Coffee Vanila Latte</h2>
+                    <p class="modal-desc">
+                        Kopi susu kekinian dengan aroma vanila yang harum.
+                        Cocok buat kamu yang suka kopi tapi ingin rasa yang lebih ringan dan manis.
+                        <br><br>
+                        <strong>Komposisi:</strong> Espresso House Blend, Susu Segar, Sirup Vanila.
+                    </p>
+                    <span class="price">Rp 17.000</span>
+                    <br><br>
+                    <a href="https://wa.me/6282122578787?text=Halo%20Soree%20Coffee,%20saya%20mau%20pesan%20Ice%20Coffee%20Vanila%20Latte"
+                        class="cta-button">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="menu4.jpg" alt="BeefBurger">
+                <h3>Spesial Beef Burger</h3>
+                <p>"Soree Spesial Beef Burger: Nikmatnya Burger, Segarnya Kopi. Klop!"</p>
+                <span class="price">Rp 18.000</span>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-4')">Lihat Detail</button>
+            </div>
+
+            <div id="modal-4" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-4')">&times;</span>
+                    <img src="menu4.jpg" alt="Detail Burger">
+                    <h2>Spesial Beef Burger</h2>
+                    <p class="modal-desc">
+                        Burger dengan patty daging sapi asli yang juicy, dilengkapi sayuran segar
+                        dan saus rahasia Soree Coffee. Kenyang dan puas!
+                        <br><br>
+                        <strong>Komposisi:</strong> Bun Burger, Beef Patty, Selada, Tomat, Keju, Saus Spesial.
+                    </p>
+                    <span class="price">Rp 18.000</span>
+                    <br><br>
+                    <a href="https://wa.me/6282122578787?text=Halo%20Soree%20Coffee,%20saya%20mau%20pesan%20Spesial%20Beef%20Burger"
+                        class="cta-button">Pesan Sekarang</a>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="menu5.jpg" alt="JamurCrispy">
+                <h3>Jamur Crispy Original</h3>
+                <p>"Sore Jamur Crispy: Jamur Crispy, Kriuknya Pasti. Nikmat Jamurnya, Juara Gurihnya."</p>
+                <span class="price">Rp 12.000</span>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-5')">Lihat Detail</button>
+            </div>
+
+            <div id="modal-5" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-5')">&times;</span>
+                    <img src="menu5.jpg" alt="Detail Jamur">
+                    <h2>Jamur Crispy Original</h2>
+                    <p class="modal-desc">
+                        Cemilan favorit sejuta umat! Jamur tiram yang digoreng tepung hingga
+                        sangat renyah. Gurih, kriuk, dan cocok jadi teman ngopi.
+                        <br><br>
+                        <strong>Komposisi:</strong> Jamur Tiram Segar, Tepung Bumbu Rahasia, Saus Sambal.
+                    </p>
+                    <span class="price">Rp 12.000</span>
+                    <br><br>
+                    <a href="https://wa.me/6282122578787?text=Halo%20Soree%20Coffee,%20saya%20mau%20pesan%20Jamur%20Crispy"
+                        class="cta-button">Pesan Sekarang</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -873,14 +1216,17 @@
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d249.35446429939637!2d101.4461278!3d0.4916554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5af21260686cb%3A0x66e89ed9b103b79d!2sSoree%20Coffee!5e0!3m2!1sid!2sid!4v1764825994801!5m2!1sid!2sid%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade"
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D"
-                    class="map-overlay-btn" target="_blank">Buka di
-                    Google Maps</a>
+                    class="map-overlay-btn" target="_blank">Google Maps</a>
             </div>
             <div class="location-text">
                 <div>
                     <h3>Lokasi Soree Coffee</h3>
                     <p>Jl. Wonosari Ujung Kel No.156, Tangkerang Tengah, Kec. Marpoyan Damai, Kota Pekanbaru, Riau 28282
                     </p>
+
+                    <a href="https://www.google.com/maps/place/Soree+Coffee/@0.4916554,101.4461278,21z/data=!4m6!3m5!1s0x31d5af21260686cb:0x66e89ed9b103b79d!8m2!3d0.491592!4d101.4461323!16s%2Fg%2F11jvc7zlsd?entry=ttu&g_ep=EgoyMDI1MTIwMS4wIKXMDSoASAFQAw%3D%3D"
+                        class="cta-button" target="_blank">Buka di Google Maps</a>
+
                 </div>
             </div>
         </div>
@@ -915,6 +1261,11 @@
             </div>
         </div>
     </section>
+
+    <div id="lightbox-overlay" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -1032,8 +1383,65 @@
         // 4. Tambahkan 'event listener' ke seluruh halaman
         document.body.addEventListener('click', mulaiMusik);
 
+        // --- SCRIPT UNTUK MODAL DETAIL PRODUK ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active'); // Munculkan modal
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active'); // Sembunyikan modal
+        }
+
+        // Menutup modal jika user klik di area gelap (luar kotak)
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // --- SCRIPT UNTUK FITUR ZOOM GAMBAR ---
+
+        // 1. Ambil elemen gambar di dalam modal
+        // Kita cari semua gambar yang ada di dalam class 'modal-content'
+        const modalImages = document.querySelectorAll('.modal-content img');
+        const lightbox = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // 2. Beri perintah 'Klik' pada setiap gambar tersebut
+        modalImages.forEach(img => {
+            img.style.cursor = "zoom-in"; // Ubah kursor jadi kaca pembesar
+            img.addEventListener('click', function () {
+                lightbox.classList.add('active'); // Munculkan lightbox
+                lightboxImg.src = this.src; // Salin gambar yang diklik ke lightbox
+            });
+        });
+
+        // 3. Fungsi Menutup Lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        // Menutup Modal atau Lightbox dengan tombol Esc
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                // 1. Cari semua modal yang sedang aktif dan tutup
+                const activeModals = document.querySelectorAll('.modal.active');
+                activeModals.forEach(modal => {
+                    modal.classList.remove('active');
+                });
+
+                // 2. Tutup lightbox jika sedang terbuka
+                const lightbox = document.getElementById('lightbox-overlay');
+                if (lightbox && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            }
+        });
 
     </script>
 
 </body>
+
 </html>
