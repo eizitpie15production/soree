@@ -242,8 +242,23 @@
 
         /* --- HERO SECTION --- */
         #hero {
-            height: 100vh;
-            background: #000;
+            /* 1. Ukuran & Posisi */
+            width: 90%;
+            /* Memberi jarak di kiri dan kanan (tidak full 100%) */
+            max-width: 1200px;
+            /* Membatasi lebar agar tidak terlalu "gepeng" di layar besar */
+            height: 85vh;
+            /* Tinggi yang pas, tidak terlalu penuh */
+            margin: 20px auto;
+            /* 'auto' di kiri-kanan membuat elemen ini RATA TENGAH */
+
+            /* 2. Gaya Tampilan (The "Floating" Look) */
+            border-radius: 30px;
+            /* Sudut yang melengkung halus */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            /* Bayangan besar untuk efek melayang */
+
+            /* 3. Properti Teknis Penting */
             position: relative;
             display: flex;
             align-items: center;
@@ -251,6 +266,7 @@
             text-align: center;
             color: white;
             overflow: hidden;
+            /* PENTING: Memotong gambar yang keluar dari sudut lengkung */
         }
 
         .hero-slider {
@@ -1031,8 +1047,7 @@
     <section id="hero">
         <div class="hero-slider">
             <img src="tentang.jpg" class="slide active" alt="Latte Art">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1950&q=80" class="slide"
-                alt="Coffee Shop Atmosphere">
+            <img src="tentang5.jpg" class="slide" alt="Coffee Shop Atmosphere">
             <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1950&q=80" class="slide"
                 alt="Coffee Brewing">
             <img src="tentang3.jpg" class="slide" alt="Coffee Beans">
@@ -1127,7 +1142,8 @@
             <div class="menu-card">
                 <img src="menu3.jpg" alt="CoffeVanilaLatte">
                 <h3>Ice Coffee Vanila Latte</h3>
-                <p>"Soree Ice Coffee Vanila Latte: Segarkan harimu dengan estetika rasa.Perpaduan espresso dan susu creamy"</p>
+                <p>"Soree Ice Coffee Vanila Latte: Segarkan harimu dengan estetika rasa.Perpaduan espresso dan susu
+                    creamy"</p>
 
 
                 <button class="cta-button btn-detail" onclick="openModal('modal-3')">Lihat Detail</button>
