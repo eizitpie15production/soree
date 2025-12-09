@@ -351,7 +351,7 @@
         }
 
         .cta-button {
-            padding: 10px 20px; 
+            padding: 10px 20px;
             background: linear-gradient(45deg, #d35400, #e67e22);
             color: white;
             border-radius: 50px;
@@ -360,15 +360,15 @@
             box-shadow: 0 4px 15px rgba(211, 84, 0, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
-        
-        /* Mengecilkan huruf sedikit agar proporsional */
-        font-size: 0.9rem; 
-        
-        /* Memastikan tombol tidak memenuhi lebar layar jika tidak perlu */
-        width: auto; 
-        
-        /* Opsional: memberi jarak bawah agar tidak mepet elemen lain */
-        margin-bottom: 10px;
+
+            /* Mengecilkan huruf sedikit agar proporsional */
+            font-size: 0.9rem;
+
+            /* Memastikan tombol tidak memenuhi lebar layar jika tidak perlu */
+            width: auto;
+
+            /* Opsional: memberi jarak bawah agar tidak mepet elemen lain */
+            margin-bottom: 10px;
         }
 
         .cta-button:hover {
@@ -963,48 +963,84 @@
         }
 
         /* --- STYLE LIGHTBOX ZOOM --- */
+        /* 1. Wrapper Utama (Latar Gelap) */
         .lightbox {
+            /* PENTING: display none agar sembunyi saat web dibuka */
             display: none;
-            /* Sembunyi dulu */
+
             position: fixed;
             z-index: 2000;
-            /* Lebih tinggi dari Modal biasa (biasanya 1000) */
+            /* Layer paling atas */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
-            /* Latar hitam pekat */
+            /* Hitam pekat transparan */
+            animation: fadeIn 0.3s;
+
+            /* Flexbox disiapkan di sini, tapi baru aktif saat ada class .active */
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
-            /* Kursor berubah tanda minus */
-            animation: fadeIn 0.3s;
         }
 
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            border: 2px solid #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            cursor: default;
-            /* Kursor biasa di area gambar */
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        /* Saat aktif, gambar membesar ke ukuran normal */
-        .lightbox.active .lightbox-content {
-            transform: scale(1);
-
-        }
-
+        /* 2. Saat Lightbox Aktif (Diklik) */
         .lightbox.active {
+            /* PENTING: Ini yang memunculkan lightbox */
             display: flex;
-            /* Gunakan flex agar gambar di tengah */
         }
 
+        /* 3. Container Pembungkus (Agar bisa di-scroll) */
+        .lightbox-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            /* Scrollbar otomatis muncul jika gambar besar */
+            padding: 20px;
+        }
+
+        /* 4. Gambar (Konten) */
+        .lightbox-content {
+            /* Tampilan awal (sebelum di-zoom di dalam lightbox) */
+            max-width: 80vw;
+            max-height: 80vh;
+            object-fit: contain;
+
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            cursor: zoom-in;
+            /* Ikon kaca pembesar (+) */
+            transition: all 0.3s ease;
+        }
+
+        /* 5. Efek Zoom (Saat gambar diklik 2x atau interaksi lanjut) */
+        /* Catatan: Di JS kamu saat ini, klik gambar menutup lightbox. 
+       Jika ingin zoom otomatis saat lightbox muncul, gunakan style di bawah ini 
+       langsung pada .lightbox.active .lightbox-content */
+
+        /* 5. Efek Zoom (PERBAIKAN: Zoom Natural) */
+        .lightbox.active .lightbox-content {
+            /* Hapus batasan maksimal agar gambar bisa tampil full size */
+            max-width: none;
+            max-height: none;
+
+            /* GANTI BAGIAN INI: */
+            /* Gunakan 'auto' agar gambar tampil sesuai ukuran aslinya */
+            width: auto;
+            height: auto;
+
+            /* Kursor berubah jadi minus */
+            cursor: zoom-out;
+
+            /* Usaha mempertajam pixel (hasil tergantung browser) */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* 6. Tombol Close (Silang) */
         .close-lightbox {
             position: absolute;
             top: 20px;
@@ -1013,11 +1049,13 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 2001;
+            z-index: 2002;
+            /* Pastikan di atas segalanya */
         }
 
         .close-lightbox:hover {
-            color: var(--price-color);
+            color: #d35400;
+            /* Warna oranye sesuai tema kopi */
         }
     </style>
 </head>
@@ -1204,6 +1242,32 @@
             </div>
 
             <div class="menu-card">
+                <img src="menulengkap.jpg" alt="Menu Lengkap">
+                <h3>Daftar Menu Lengkap</h3>
+                <p>"Ingin eksplorasi rasa lain? Cek daftar menu lengkap Soree Coffee di sini."</p>
+
+                <button class="cta-button btn-detail" onclick="openModal('modal-6')">Lihat Detail</button>
+            </div>
+
+            <div id="modal-6" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('modal-6')">×</span>
+                    <img src="menulengkap.jpg" alt="Detail Menu Lengkap">
+                    <h4>(Klik Gambar diatas Untuk Lihat Menu)</h4>
+                    <h2>Daftar Menu Lengkap</h2>
+                    <p class="modal-desc">
+                        Berikut adalah katalog lengkap dari Soree Coffee.
+                        Temukan varian rasa favoritmu mulai dari Coffee, Non-Coffee, hingga Snacks.
+                        <br><br>
+                        <strong>Info:</strong> Tersedia juga menu musiman yang bisa kamu tanyakan langsung ke Barista.
+                    </p>
+                    <br><br>
+                    <a href="https://wa.me/6289525053113?text=Halo%20Soree%20Coffee,%20boleh%20minta%20foto%20menu%20lengkapnya?"
+                        class="cta-button">Tanya Menu Lain</a>
+                </div>
+            </div>
+
+            <div class="menu-card">
                 <img src="menu5.jpg" alt="JamurCrispy">
                 <h3>Jamur Crispy Original</h3>
                 <p>"Sore Jamur Crispy: Jamur Crispy, Kriuknya Pasti. Nikmat Jamurnya, Juara Gurihnya."</p>
@@ -1229,7 +1293,6 @@
                         class="cta-button">Pesan Sekarang</a>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1288,8 +1351,11 @@
     </section>
 
     <div id="lightbox-overlay" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <span class="close-lightbox">×</span>
+
+        <div class="lightbox-container">
+            <img class="lightbox-content" id="lightbox-img">
+        </div>
     </div>
 
     <footer>
